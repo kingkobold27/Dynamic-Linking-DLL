@@ -156,7 +156,7 @@ __declspec(dllexport) int __stdcall ExecuteCommand(
     return (int)code;
 }
 
-__declspec(dllexport) int __cdecl ExecuteCommandDuplicate(
+__declspec(dllexport) int __stdcall ExecuteCommandDuplicate(
     const char* windows_verb, const char* const args[], int argc)
 {
     return ExecuteCommand(windows_verb, args, argc);
