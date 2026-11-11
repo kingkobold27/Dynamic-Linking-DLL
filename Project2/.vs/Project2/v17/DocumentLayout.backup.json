@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Student\\source\\repos\\Project2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{270CCD7B-449D-4C61-A6CF-D1359A8D5B01}|Project2\\Project2.vcxproj|C:\\Users\\Student\\source\\repos\\Dynamic-Linking-DLL\\L2WShellDLL.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{270CCD7B-449D-4C61-A6CF-D1359A8D5B01}|Project2\\Project2.vcxproj|C:\\Users\\Student\\source\\repos\\Project2\\Project2\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{270CCD7B-449D-4C61-A6CF-D1359A8D5B01}|Project2\\Project2.vcxproj|solutionrelative:Project2\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "L2WShellDLL.c",
+              "DocumentMoniker": "C:\\Users\\Student\\source\\repos\\Dynamic-Linking-DLL\\L2WShellDLL.c",
+              "RelativeDocumentMoniker": "..\\Dynamic-Linking-DLL\\L2WShellDLL.c",
+              "ToolTip": "C:\\Users\\Student\\source\\repos\\Dynamic-Linking-DLL\\L2WShellDLL.c",
+              "RelativeToolTip": "..\\Dynamic-Linking-DLL\\L2WShellDLL.c",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-11-11T03:01:39.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dllmain.cpp",
+              "DocumentMoniker": "C:\\Users\\Student\\source\\repos\\Project2\\Project2\\dllmain.cpp",
+              "RelativeDocumentMoniker": "Project2\\dllmain.cpp",
+              "ToolTip": "C:\\Users\\Student\\source\\repos\\Project2\\Project2\\dllmain.cpp",
+              "RelativeToolTip": "Project2\\dllmain.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-11-11T03:00:31.74Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
