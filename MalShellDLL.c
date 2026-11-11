@@ -11,23 +11,20 @@
 typedef int (__stdcall *ParseCommandFn)(char*, char* [], int);
 
 
-__declspec(dllexport) int __cdecl ParseCmd(char* line, char* args[], int limit)
+__declspec(dllexport) int __stdcall ParseCmd(char* line, char* args[], int limit)
 {
     HMODULE dll;
     ParseCommandFn originalParse;
     int result;
 
-    printf("DLL Malware");
-
-    dll = LoadLibraryA("Project2.dll");
+    dll = LoadLibraryA(("C:\\Users\\Student\\source\\repos\\Project2\\Debug\\Project2.dll"));
 
     if (dll == NULL) {
         printf("Could not load Project2.dll: %lu\n", GetLastError());
-        FreeLibrary(dll);
         return -1;
     }
 
-    originalParse = (ParseCommandFn)GetProcAddress(dll, "_ParseCommand@12");
+    originalParse = (ParseCommandFn)GetProcAddress(dll, "_ParseCmd@12");
 
     if (originalParse == NULL) {
         printf("Could not find ParseCommand: %lu\n", GetLastError());

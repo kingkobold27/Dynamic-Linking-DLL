@@ -7,7 +7,7 @@
 #define MAX_LINE 1024
 #define MAX_ARGS 16
 
-__declspec(dllexport) int __cdecl ParseCmd(char *line, char *args[], int limit)
+__declspec(dllexport) int __stdcall ParseCmd(char *line, char *args[], int limit)
 {
     int count = 0;
     char *readp = line;
